@@ -34,6 +34,8 @@ public class UserSchema {
     private String password;
 
     @Column(name = "ROLE")
+    // 0 seller
+    // 1 buyer
     private int role;
 
 
