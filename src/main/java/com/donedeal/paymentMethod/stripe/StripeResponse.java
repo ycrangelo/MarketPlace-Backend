@@ -1,4 +1,4 @@
-package com.donedeal.schema.stripe;
+package com.donedeal.paymentMethod.stripe;
 
 
 import lombok.AllArgsConstructor;
