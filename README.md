@@ -19,9 +19,9 @@ A peer-to-peer (P2P) marketplace backend where users act as buyers or sellers an
 | Framework      | Spring Boot              |
 | Database       | MySQL                    |
 | API            | RESTful (Spring MVC)     |
-| Security       | -                        |
-| Build Tool     | Maven or Gradle          |
-| Container      | Docker to be emplement   |
+| Security       | Springboot Security      |
+| Build Tool     | Maven                    |
+| Container      | Docker (to be emplement) |
 
 ##  How to Download & Use
 
