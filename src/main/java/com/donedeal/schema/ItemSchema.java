@@ -35,10 +35,8 @@ public class ItemSchema {
     @Column(name = "STATUS")
     //false if posted/binebenta
     //true if bought na, tama ba bought? AHAHAH
-    private Boolean status;
+    private int status;
 
-    @Column(name = "BUYERID")
-    private int buyerId;
 
     @Column(name = "SELLERID")
     private int sellerId;
