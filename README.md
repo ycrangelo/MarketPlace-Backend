@@ -45,7 +45,7 @@ spring.jpa.hibernate.ddl-auto=update
 # Using Maven
 ./mvnw spring-boot:run
 
-# Using Gradle
+# Using Gradle(if youre using gradle)
 ./gradlew bootRun
 ```
 
