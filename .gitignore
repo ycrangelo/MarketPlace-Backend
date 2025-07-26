@@ -19,6 +19,10 @@ target/
 *.iml
 *.ipr
 
+# Ignore Spring Boot application configuration
+/src/main/resources/application.properties
+
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
