@@ -1,6 +1,7 @@
 package com.donedeal.service;
 
 
+import com.donedeal.LocalSession;
 import com.donedeal.repository.UserRepository;
 import com.donedeal.schema.UserSchema;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private LocalSession localSession;
 
 
     // using UserSchema as return of the route or function
@@ -45,6 +49,9 @@ public class UserService {
          System.out.println("this is the user Service login userSchema "+ userLogin);
          String userEncryptedPassword = userLogin.getPassword();
          if(passwordEncoder.matches(password,userEncryptedPassword)){
+             System.out.println("username in the userschema "+ userSchema.get().getUsername());
+             localSession.setUsername(userSchema.get().getUsername());
+             System.out.println("username in the localSession "+ localSession.getUsername());
              result = true;
          }
      }
