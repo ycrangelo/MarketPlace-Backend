@@ -33,8 +33,8 @@ public class ItemSchema {
     private double itemPrice;
 
     @Column(name = "STATUS")
-    //false if posted/binebenta
-    //true if bought na, tama ba bought? AHAHAH
+    //1 if posted/binebenta
+    //0 if bought na, tama ba bought? AHAHAH
     private int status;
 
 

@@ -1,9 +1,11 @@
 package com.donedeal.service;
 
 import com.donedeal.paymentMethod.stripe.TransactionReciept;
+import com.donedeal.repository.ItemRepository;
 import com.donedeal.repository.TransactionRepository;
 import com.donedeal.paymentMethod.stripe.StripeResponse;
 import com.donedeal.paymentMethod.stripe.ProductRequest;
+import com.donedeal.schema.ItemSchema;
 import com.donedeal.schema.TransactionsSchema;
 import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
@@ -14,13 +16,6 @@ import org.springframework.stereotype.Service;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 
-import com.stripe.Stripe;
-import com.stripe.exception.StripeException;
-import com.stripe.model.checkout.Session;
-import com.stripe.param.checkout.SessionCreateParams;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 
 @Service
 public class TransactionService {
@@ -28,6 +23,9 @@ public class TransactionService {
 
     @Autowired
     private TransactionRepository transactionRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+
 
     @Value("${stripe.secretkey}")
     private String stripeSk;
@@ -115,6 +113,21 @@ public class TransactionService {
 
     public TransactionsSchema postTransaction(TransactionsSchema transactionsSchema) {
 //        transactionsSchema.setPaymenetMethod("stripe");
+        updateStatusItem(transactionsSchema.getItemId());
         return transactionRepository.save(transactionsSchema);
     }
+
+    public void updateStatusItem(int id){
+        // Find the entity by its ID
+        ItemSchema item = itemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Entity not found"));
+
+        // Update the specific value
+        item.setStatus(0);
+
+        // Save the updated entity back to the database
+        itemRepository.save(item);
+    }
+
+
 }
