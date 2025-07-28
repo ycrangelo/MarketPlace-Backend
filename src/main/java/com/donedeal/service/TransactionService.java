@@ -39,7 +39,7 @@ public class TransactionService {
         // pass the  apikey
         Stripe.apiKey = stripeSk;
 
-        System.out.println("this is the api key "+ stripeSk);
+//        System.out.println("this is the api key "+ stripeSk);
 
         // Create a PaymentIntent with the order amount and currency
         SessionCreateParams.LineItem.PriceData.ProductData productData =
@@ -75,7 +75,7 @@ public class TransactionService {
         // Create new session
         try {
             session = Session.create(params);
-            System.out.println("this is the api key "+ stripeSk);
+//            System.out.println("this is the api key "+ stripeSk);
         }catch (StripeException e) {
             e.printStackTrace(); // log it for debugging
             throw new RuntimeException("Stripe session creation failed: " + e.getMessage());
@@ -114,7 +114,7 @@ public class TransactionService {
     }
 
     public TransactionsSchema postTransaction(TransactionsSchema transactionsSchema) {
-        transactionsSchema.setPaymenetMethod("stripe");
+//        transactionsSchema.setPaymenetMethod("stripe");
         return transactionRepository.save(transactionsSchema);
     }
 }

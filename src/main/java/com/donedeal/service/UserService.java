@@ -37,8 +37,8 @@ public class UserService {
 
     public Boolean loginUser(String username, String password) {
         boolean result = false;
-        System.out.println("this is service username "+username);
-        System.out.println("this is service password "+password);
+//        System.out.println("this is service username "+username);
+//        System.out.println("this is service password "+password);
         //this is a CLASS YUNG OPTIONAL
         //Optional not optional
 //     Optional<UserSchema> userSchema = userRepo.findByUsernameAndPassword(username,password);
@@ -46,12 +46,12 @@ public class UserService {
 
      if(userSchema.isPresent()){
          UserSchema userLogin = userSchema.get();
-         System.out.println("this is the user Service login userSchema "+ userLogin);
+//         System.out.println("this is the user Service login userSchema "+ userLogin);
          String userEncryptedPassword = userLogin.getPassword();
          if(passwordEncoder.matches(password,userEncryptedPassword)){
-             System.out.println("username in the userschema "+ userSchema.get().getUsername());
+//             System.out.println("username in the userschema "+ userSchema.get().getUsername());
              localSession.setUsername(userSchema.get().getUsername());
-             System.out.println("username in the localSession "+ localSession.getUsername());
+//             System.out.println("username in the localSession "+ localSession.getUsername());
              result = true;
          }
      }
