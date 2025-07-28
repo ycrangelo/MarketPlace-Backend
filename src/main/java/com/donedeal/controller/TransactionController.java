@@ -34,7 +34,7 @@ public class TransactionController {
     public ResponseEntity<StripeResponse> checkoutProducts(@RequestBody ProductRequest productRequest) {
         StripeResponse stripeResponse = transactionService.checkoutProducts(productRequest);
         localSession.setSessionPaymentId(stripeResponse.getSessionId());
-        System.out.println("session payment id is "+localSession.getSessionPaymentId());
+//        System.out.println("session payment id is "+localSession.getSessionPaymentId());
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(stripeResponse);
