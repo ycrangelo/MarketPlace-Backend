@@ -10,10 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StripeResponse {
+public class TransactionReciept {
 
+    private String transactionId;
+    private String created;
+    private String client_secret;
+    private String balanceTransaction;
     private String status;
-    private String message;
-    private String sessionId;
-    private String sessionUrl;
+    private String receiptEmail;
+    private String customer;
 }

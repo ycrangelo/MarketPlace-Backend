@@ -1,10 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Payment Failed</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #fff5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .crossmark {
+            font-size: 100px;
+            color: #D8000C;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #d9534f;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c9302c;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="container">
+    <div class="crossmark">❌</div>
+    <h1>Payment Failed</h1>
+    <p>We're sorry, but your transaction could not be completed.</p>
+    <a href="/" class="btn">Try Again</a>
+</div>
 </body>
 </html>

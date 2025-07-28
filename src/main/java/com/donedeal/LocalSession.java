@@ -21,4 +21,6 @@ public class LocalSession {
     private String paymentMethod;
     private String paymentId;
 
+    private String sessionPaymentId;
+
 }
