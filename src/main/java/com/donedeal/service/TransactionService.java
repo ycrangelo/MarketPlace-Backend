@@ -1,9 +1,11 @@
 package com.donedeal.service;
 
+import com.donedeal.paymentMethod.stripe.TransactionReciept;
 import com.donedeal.repository.TransactionRepository;
 import com.donedeal.paymentMethod.stripe.StripeResponse;
 import com.donedeal.paymentMethod.stripe.ProductRequest;
 import com.stripe.Stripe;
+import com.stripe.model.PaymentIntent;
 import com.stripe.param.checkout.SessionCreateParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TransactionService {
+    Session session = null;
 
     @Autowired
     private TransactionRepository transactionRepository;
@@ -68,7 +71,6 @@ public class TransactionService {
                         .build();
 
         // Create new session
-        Session session = null;
         try {
             session = Session.create(params);
             System.out.println("this is the api key "+ stripeSk);
@@ -85,5 +87,27 @@ public class TransactionService {
                 .sessionId(session.getId())
                 .sessionUrl(session.getUrl())
                 .build();
+    }
+
+    public TransactionReciept transactionReciept() throws StripeException {
+
+        Session retrievedSession = Session.retrieve(session.getId());
+
+        String paymentIntentId = retrievedSession.getPaymentIntent();
+
+        PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
+
+
+        return TransactionReciept
+                .builder()
+                .transactionId(paymentIntentId)
+                .created(String.valueOf(paymentIntent.getCreated()))
+                .client_secret(paymentIntent.getClientSecret())
+                .status(paymentIntent.getStatus())
+                .customer(paymentIntent.getCustomer())
+                .receiptEmail(paymentIntent.getReceiptEmail())
+                .balanceTransaction(String.valueOf(paymentIntent.getAmount()))
+                .build();
+
     }
 }
