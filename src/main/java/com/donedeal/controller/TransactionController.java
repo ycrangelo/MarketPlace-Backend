@@ -2,7 +2,10 @@ package com.donedeal.controller;
 
 
 import com.donedeal.LocalSession;
+import com.donedeal.schema.TransactionsSchema;
 import com.donedeal.service.TransactionService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +39,14 @@ public class TransactionController {
                 .status(HttpStatus.OK)
                 .body(stripeResponse);
     }
+
+    @PostMapping("/product/payment/transaction/save")
+    public TransactionsSchema postTransaction(@RequestBody TransactionsSchema transactionsSchema) {
+
+        return transactionService.postTransaction(transactionsSchema);
+    }
+
+
 }
 
 

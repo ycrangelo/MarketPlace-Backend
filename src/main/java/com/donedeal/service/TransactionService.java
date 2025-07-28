@@ -4,6 +4,7 @@ import com.donedeal.paymentMethod.stripe.TransactionReciept;
 import com.donedeal.repository.TransactionRepository;
 import com.donedeal.paymentMethod.stripe.StripeResponse;
 import com.donedeal.paymentMethod.stripe.ProductRequest;
+import com.donedeal.schema.TransactionsSchema;
 import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.checkout.SessionCreateParams;
@@ -30,6 +31,7 @@ public class TransactionService {
 
     @Value("${stripe.secretkey}")
     private String stripeSk;
+
 
 
 
@@ -109,5 +111,10 @@ public class TransactionService {
                 .balanceTransaction(String.valueOf(paymentIntent.getAmount()))
                 .build();
 
+    }
+
+    public TransactionsSchema postTransaction(TransactionsSchema transactionsSchema) {
+        transactionsSchema.setPaymenetMethod("stripe");
+        return transactionRepository.save(transactionsSchema);
     }
 }
