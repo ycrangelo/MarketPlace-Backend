@@ -6,6 +6,7 @@ import com.donedeal.schema.TransactionsSchema;
 import com.donedeal.service.TransactionService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,8 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
     @RequestMapping("/product/payment/stripe")
-    public ResponseEntity<StripeResponse> checkoutProducts(@RequestBody ProductRequest productRequest) {
-        StripeResponse stripeResponse = transactionService.checkoutProducts(productRequest);
+    public ResponseEntity<StripeResponse> checkoutProducts(@RequestBody ProductInfo productInfo ) {
+        StripeResponse stripeResponse = transactionService.checkoutProducts(productInfo.getBuyerId(), productInfo.getSerllerId(), productInfo.getItemId() );
         localSession.setSessionPaymentId(stripeResponse.getSessionId());
 //        System.out.println("session payment id is "+localSession.getSessionPaymentId());
         return ResponseEntity
@@ -40,12 +41,21 @@ public class TransactionController {
                 .body(stripeResponse);
     }
 
-    @PostMapping("/product/payment/transaction/save")
-    public TransactionsSchema postTransaction(@RequestBody TransactionsSchema transactionsSchema) {
 
-        return transactionService.postTransaction(transactionsSchema);
+
+
+
+    // this is for setter and getter
+    @Data
+//this is for constructor
+    @NoArgsConstructor
+    @AllArgsConstructor
+// use in  DTA ATA? OR JDC? dont new pero parang pang sanitize or centrilize ito eh
+    static class ProductInfo{
+        private int buyerId;
+        private int serllerId;
+        private int itemId;
     }
-
 
 }
 

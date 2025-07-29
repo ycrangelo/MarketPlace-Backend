@@ -39,7 +39,7 @@ public class TransactionsSchema {
     //payment method if paypal or idk
     private String paymenetMethod;
 
-    @Column(name = "PAYMENTID")
+    @Column(name = "paymentid")
     private String paymentId;
 
     @Column(name = "STATUS")

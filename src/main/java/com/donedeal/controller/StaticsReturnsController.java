@@ -18,6 +18,7 @@ public class StaticsReturnsController {
         @GetMapping("/success")
         public TransactionReciept success() throws StripeException {
 //            transactionService.transactionReciept();
+            transactionService.postTransaction();
             return transactionService.transactionReciept();
         }
 

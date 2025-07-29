@@ -28,8 +28,8 @@ public UserSchema postUser(@RequestBody UserSchema userSchema) {
 @PostMapping("/user/signin")
 public Boolean loginUser(@RequestBody UserCreds userCreds) {
     System.out.println("hola signin");
-    System.out.println(userCreds.getUsername());
-    System.out.println(userCreds.getPassword());
+//    System.out.println(userCreds.getUsername());
+//    System.out.println(userCreds.getPassword());
     return userService.loginUser(userCreds.getUsername(), userCreds.getPassword());
 }
 

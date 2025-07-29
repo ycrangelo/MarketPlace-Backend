@@ -12,17 +12,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LocalSession {
-
-    private String username;
-    private int userId;
-    private int itemId;
-    private int sellerId;
-    private String paymentMethod;
-    private String paymentId;
-
-    private String sessionPaymentId;
-
+public class TransactionSession {
 
     private int transactionBuyerId;
     private int transactionSellerId;
