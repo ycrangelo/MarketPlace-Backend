@@ -1,4 +1,4 @@
-#  MarketPlace-Backend (P2P Model) Ongoing
+#  Simple MarketPlace-Backend (P2P Model)
 
 A peer-to-peer (P2P) marketplace backend where users act as buyers or sellers and negotiate transactions directly—built with Java, Spring Boot, and MySQL.
 
@@ -6,9 +6,9 @@ A peer-to-peer (P2P) marketplace backend where users act as buyers or sellers an
 
 - **P2P Transactions**: Buyers and sellers interact directly—no central product inventory.
 - **User Roles**: Register as buyer or seller. Admin panel for moderation (optional).
-- **Offer/Bid System**: Sellers post offers, buyers post bids—matches are negotiated peer-to-peer.
+- **Offer/Bid System ( to be implement )**: Sellers post offers, buyers post bids—matches are negotiated peer-to-peer.
 - **Transaction History**: Records of completed deals.
-- **Notifications**: Real-time alerts for new offers, bids, and transaction updates.
+- **Notifications ( to be implement )**: Real-time alerts for new offers, bids, and transaction updates.
 - **Robust Error Handling**: Standard HTTP status codes and clear JSON error messages.
 
 ## Technology Stack
