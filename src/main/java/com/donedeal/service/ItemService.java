@@ -20,6 +20,6 @@ public class ItemService {
     }
 
     public List<ItemSchema> getAllItems(){
-        return itemRepository.findAll();
+        return itemRepository.findAllByStatus(1);
     }
 }

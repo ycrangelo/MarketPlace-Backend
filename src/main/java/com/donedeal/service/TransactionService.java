@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -166,7 +168,7 @@ public class TransactionService {
         String paymentIntentId = retrievedSession.getPaymentIntent();
 
         PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
-        
+
         transaction.setPaymentId(paymentIntent.getClientSecret());
         transaction.setStatus(transactionSession.getTransactionStatus());
 
@@ -184,6 +186,24 @@ public class TransactionService {
         // Save the updated entity back to the database
         itemRepository.save(item);
     }
+
+    public List<ItemSchema> getItemsByBuyerId(int buyerId) {
+        List<TransactionsSchema> transactions = transactionRepository.findAllByBuyerId(buyerId);
+        System.out.println("Buyer ID: " + buyerId);
+        System.out.println("Transactions: " + transactions);
+        List<ItemSchema> items = new ArrayList<>();
+        for (TransactionsSchema transaction : transactions) {
+            int itemId = transaction.getItemId();
+            System.out.println(itemId);
+            ItemSchema item = itemRepository.findById(itemId)
+                    .orElseThrow(() -> new RuntimeException("Item not found with ID: " + itemId));
+            items.add(item);
+            System.out.println(item);
+        }
+
+        return items;
+    }
+
 
 
 }

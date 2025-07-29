@@ -2,6 +2,7 @@ package com.donedeal.controller;
 
 
 import com.donedeal.LocalSession;
+import com.donedeal.schema.ItemSchema;
 import com.donedeal.schema.TransactionsSchema;
 import com.donedeal.service.TransactionService;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,8 @@ import com.donedeal.paymentMethod.stripe.ProductRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class TransactionController {
@@ -41,6 +44,11 @@ public class TransactionController {
                 .body(stripeResponse);
     }
 
+    @GetMapping("/user/get/allBought")
+    public List<ItemSchema> getItemsByBuyerId(@RequestBody GetAllBought getAllBought){
+        return transactionService.getItemsByBuyerId(getAllBought.getBuyerId());
+    }
+
 
 
 
@@ -56,6 +64,17 @@ public class TransactionController {
         private int serllerId;
         private int itemId;
     }
+
+    // this is for setter and getter
+    @Data
+//this is for constructor
+    @NoArgsConstructor
+    @AllArgsConstructor
+// use in  DTA ATA? OR JDC? dont new pero parang pang sanitize or centrilize ito eh
+    static class GetAllBought{
+        private int buyerId;
+    }
+
 
 }
 
