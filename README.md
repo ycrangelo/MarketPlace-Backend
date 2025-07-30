@@ -23,6 +23,10 @@ A peer-to-peer (P2P) marketplace backend where users act as buyers or sellers an
 | Build Tool     | Maven                    |
 | Container      | Docker (to be emplement) |
 
+## Marketplace Sequence Diagram
+![Uploading image.png…]()
+
+
 ## API Endpoints
 
 ### User Authentication
