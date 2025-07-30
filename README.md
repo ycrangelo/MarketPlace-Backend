@@ -24,7 +24,8 @@ A peer-to-peer (P2P) marketplace backend where users act as buyers or sellers an
 | Container      | Docker (to be emplement) |
 
 ## Marketplace Sequence Diagram
-![Uploading image.png…]()
+![b1b1ee3b-6056-4813-9239-488550424435](https://github.com/user-attachments/assets/5b0d4ac4-32f9-4e33-a69d-c1a8dc4891e8)
+
 
 
 ## API Endpoints
