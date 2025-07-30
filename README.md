@@ -23,6 +23,31 @@ A peer-to-peer (P2P) marketplace backend where users act as buyers or sellers an
 | Build Tool     | Maven                    |
 | Container      | Docker (to be emplement) |
 
+## API Endpoints
+
+### User Authentication
+
+| Method | Endpoint          | Description                          | Request Body Example                              |
+|--------|-------------------|--------------------------------------|---------------------------------------------------|
+| POST   | `/user/signup`    | Register a new user                  | `{"username":"string", "password":"string", ...}` |
+| POST   | `/user/signin`    | Login existing user                  | `{"username":"string", "password":"string"}`      |
+
+### Item Management
+
+| Method | Endpoint          | Description                          |
+|--------|-------------------|--------------------------------------|
+| POST   | `/post/item`      | Post (add) a new item (as seller)    |
+| GET    | `/get/allItems`   | Retrieve all available items         |
+
+### Transaction Processing
+
+| Method | Endpoint                     | Description                                                                 | Request Body Example                          |
+|--------|------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
+| POST   | `/product/payment/stripe`    | Initiate Stripe payment session                                             | `{"buyerId":1, "serllerId":2, "itemId":3}`    |
+| GET    | `/success`                   | Successful payment callback (updates transaction status)                    | -                                             |
+| GET    | `/failed`                    | Failed payment callback                                                     | -                                              |
+| GET    | `/user/get/allBought`        | Retrieve all items purchased by a buyer                                     | `{"buyerId":1}`    
+
 ##  How to Download & Use
 
 ### 1. Download the Project
@@ -34,11 +59,28 @@ cd MarketPlace-Backend
 
 ## Configure application properties:
 ```bash
-# src/main/resources/application.properties
-spring.datasource.url=jdbc:mysql://localhost:3306/marketplace_p2p
-spring.datasource.username=your_username
-spring.datasource.password=your_password
+spring.application.name={your application name}
+spring.datasource.url=jdbc:mysql://localhost:3306/{your database}
+spring.datasource.username={your db username}
+spring.datasource.password={your db password}
+myapp.username={your username}
+
+
+#stripe
+
+stripe.secretkey = {your stripe sk}
+stripe.pk = {your stripe pk}
+
+
+#this is for the config of the databse
+spring.jpa.show-sql=true
+# for the schema
+spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+
+logging.level.org.springframework.security=DEBUG
 ```
 ## Run the application:
 ```bash
